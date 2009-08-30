@@ -87,8 +87,7 @@ sub _check_module_versions {
     my @modules = @_;
     
     ## no critic (eval)
-    foreach my $module (@modules)
-    {
+    foreach my $module (@modules) {
         eval "require $module" or $TEST->diag($@);
         $TEST->is_eq($module->VERSION, $version, "$module is the same as the distribution version");
     }
@@ -110,6 +109,7 @@ sub _check_changelog {
 }
 
 1; # Magic true value required at end of module
+
 __END__
 
 =head1 NAME
@@ -140,9 +140,9 @@ This document describes Test::ConsistentVersion version 0.0.1
 
 =head1 DESCRIPTION
 
-=for author to fill in:
-    Write a full description of the module and its features here.
-    Use subsections (=head2, =head3) as appropriate.
+The purpose of this module is to make it easy for other distribution
+authors to have consistent version numbers within the modules (and
+changelog) of the distribution.
 
 
 =head1 INTERFACE
@@ -161,12 +161,7 @@ are all consistent.
 
 =head1 DIAGNOSTICS
 
-=for author to fill in:
-    List every single error and warning message that the module can
-    generate (even the ones that will "never happen"), with a full
-    explanation of each problem, one or more likely causes, and any
-    suggested remedies.
-
+Nothing so far.
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
@@ -175,13 +170,13 @@ Test::ConsistentVersion requires no configuration files or environment variables
 
 =head1 DEPENDENCIES
 
-=for author to fill in:
-    A list of all the other modules that this module relies upon,
-    including any restrictions on versions, and an indication whether
-    the module is part of the standard Perl distribution, part of the
-    module's distribution, or must be installed separately. ]
+=over
 
-Test::Builder
+=item L<Test::Builder>
+
+=item L<autodie>
+
+=back
 
 
 =head1 INCOMPATIBILITIES
@@ -201,6 +196,8 @@ L<http://rt.cpan.org>.
 =head1 AUTHOR
 
 Glenn Fowler  C<< <cebjyre@cpan.org> >>
+
+Thanks to L<http://www.hiivesystems.com>.
 
 
 =head1 LICENCE AND COPYRIGHT

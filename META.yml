@@ -9,6 +9,7 @@ resources:
   license: http://dev.perl.org/licenses/
 requires:
   Test::Builder: 0
+  autodie: 0
   version: 0
 configure_requires:
   Module::Build: 0.340201
