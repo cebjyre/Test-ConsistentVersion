@@ -35,10 +35,11 @@ sub check_consistent_versions {
     $test_count++ unless $ARGS{no_changelog};
     $TEST->plan(tests => $test_count);
     
+    ## no critic (eval)
     #Find the version number
     eval "require $modules[0]";
     my $distro_version = $modules[0]->VERSION;
-    $TEST->diag($distro_version);
+    $TEST->diag("Distribution version: $distro_version");
     
     _check_module_versions($distro_version, @modules);
     _check_pod_versions(@modules) unless $ARGS{no_pod};
@@ -73,6 +74,7 @@ sub _check_pod_versions {
         $TEST->diag('No files to check POD of.');
     }
     
+    ## no critic (eval)
     foreach my $module (@modules) {
         eval "require $module" or $TEST->diag($@);
         my $module_version = $module->VERSION;
@@ -84,6 +86,7 @@ sub _check_module_versions {
     my $version = shift;
     my @modules = @_;
     
+    ## no critic (eval)
     foreach my $module (@modules)
     {
         eval "require $module" or $TEST->diag($@);
