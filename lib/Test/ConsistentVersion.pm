@@ -1,16 +1,110 @@
 package Test::ConsistentVersion;
 
 use warnings;
+use autodie;
 use strict;
 use Carp;
 use Test::Builder;
 
 use version; our $VERSION = qv('0.0.1');
 
+my $TEST = Test::Builder->new;
+my %ARGS;
+
 sub check_consistent_versions {
+    %ARGS = @_;
     
+    my @modules = _find_modules();
+    
+    my $file_count = @modules;
+    unless(@modules) {
+        $TEST->diag('No files to get version from.');
+    }
+    my $test_count = $file_count;
+    unless($ARGS{no_pod}) {
+        eval { require Test::Pod::Content; };
+        
+        if ($@) {
+            $TEST->diag('Test::Pod::Content required to test POD version consistency');
+            $ARGS{no_pod} = 1;
+        }
+        else {
+            $test_count+=$file_count
+        }
+    }
+    $test_count++ unless $ARGS{no_changelog};
+    $TEST->plan(tests => $test_count);
+    
+    #Find the version number
+    eval "require $modules[0]";
+    my $distro_version = $modules[0]->VERSION;
+    $TEST->diag($distro_version);
+    
+    _check_module_versions($distro_version, @modules);
+    _check_pod_versions(@modules) unless $ARGS{no_pod};
+    _check_changelog($distro_version) unless $ARGS{no_changelog};
 }
 
+sub _find_modules {
+    my @modules;
+    
+    if($ARGS{files}) {
+        @modules = @{$ARGS{modules}};
+    }
+    if(-e 'MANIFEST') {
+        open(my $fh, '<', 'MANIFEST');
+        @modules = map {
+            my $str = $_;
+            $str =~ s{^lib/(.*)\.pm}{$1};
+            $str =~ s(/)(::)g;
+            chomp $str;
+            $str;
+        } grep {
+            /^lib.*\.pm$/
+        } <$fh>;
+        close $fh;
+    }
+    return @modules;
+}
+
+sub _check_pod_versions {
+    my @modules = @_;
+    unless(@modules) {
+        $TEST->diag('No files to check POD of.');
+    }
+    
+    foreach my $module (@modules) {
+        eval "require $module" or $TEST->diag($@);
+        my $module_version = $module->VERSION;
+        Test::Pod::Content::pod_section_like( $module, 'VERSION', qr{(^|\s)\Q$module_version\E(\s|$)}, "$module POD version is the same as module version")
+    }
+}
+
+sub _check_module_versions {
+    my $version = shift;
+    my @modules = @_;
+    
+    foreach my $module (@modules)
+    {
+        eval "require $module" or $TEST->diag($@);
+        $TEST->is_eq($module->VERSION, $version, "$module is the same as the distribution version");
+    }
+}
+
+sub _check_changelog {
+    my $version = shift;
+    if(-e 'Changes') {
+        open(my $fh, '<', 'Changes');
+        my $version_check = quotemeta($version);
+        
+        my $changlog = join "\n", <$fh>;
+        $TEST->like($changlog, qr{\b$version_check\b}, 'Changelog includes reference to the distribution version: ' . $version);
+        close $fh;
+    }
+    else {
+        $TEST->ok(0, 'Unable to find Changes file');
+    }
+}
 
 1; # Magic true value required at end of module
 __END__
@@ -38,7 +132,7 @@ This document describes Test::ConsistentVersion version 0.0.1
     
     eval "use Test::ConsistentVersion";
     plan skip_all => "Test::ConsistentVersion required for checking versions" if $@;
-    check_consistent_versions();
+    Test::ConsistentVersion::check_consistent_versions();
 
 
 =head1 DESCRIPTION
@@ -48,13 +142,7 @@ This document describes Test::ConsistentVersion version 0.0.1
     Use subsections (=head2, =head3) as appropriate.
 
 
-=head1 INTERFACE 
-
-=for author to fill in:
-    Write a separate section listing the public components of the modules
-    interface. These normally consist of either subroutines that may be
-    exported, or methods that may be called on objects belonging to the
-    classes provided by the module.
+=head1 INTERFACE
 
 =over
 

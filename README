@@ -28,6 +28,7 @@ To install this module, run the following commands:
 DEPENDENCIES
 
 Test::Builder
+autodie
 
 
 COPYRIGHT AND LICENCE

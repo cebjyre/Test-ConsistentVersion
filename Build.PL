@@ -10,6 +10,7 @@ my $builder = Module::Build->new(
     requires => {
         'Test::Builder' => 0,
         'version'       => 0,
+        'autodie'       => 0,
     },
     add_to_cleanup      => [ 'Test-ConsistentVersion-*' ],
 );
