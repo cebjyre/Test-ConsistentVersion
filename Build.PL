@@ -12,6 +12,11 @@ my $builder = Module::Build->new(
         'version'       => 0,
         'autodie'       => 0,
     },
+    meta_merge => {
+        resources => {
+            repository  => 'http://github.com/cebjyre/Test-ConsistentVersion/tree/master',
+        },
+    },
     add_to_cleanup      => [ 'Test-ConsistentVersion-*' ],
 );
 
