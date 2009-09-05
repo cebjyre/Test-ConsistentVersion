@@ -179,6 +179,16 @@ Test::ConsistentVersion requires no configuration files or environment variables
 =back
 
 
+B<Optional>
+
+=over
+
+=item L<Test::Pod::Content>
+
+For ensuring the module version matches that referenced in the POD.
+
+=back
+
 =head1 INCOMPATIBILITIES
 
 None reported.
