@@ -21,6 +21,9 @@ Test::Builder
 autodie
 version
 
+Optional:
+Test::Pod::Content
+
 COPYRIGHT AND LICENCE
 
 Copyright (C) 2009, Glenn Fowler
