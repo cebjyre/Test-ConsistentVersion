@@ -1,5 +1,9 @@
 Revision history for Test-ConsistentVersion
 
+0.0.2  Sun Sep  6 2009
+       Added a test, repository and
+            recommended modules metadata
+
 0.0.1  Sun Aug 30 2009
        Initial release.
 
