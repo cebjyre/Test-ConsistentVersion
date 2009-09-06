@@ -1,11 +1,16 @@
 Build.PL
 Changes
+lib/Test/ConsistentVersion.pm
 MANIFEST
 META.yml
 README
-lib/Test/ConsistentVersion.pm
 t/00.load.t
+t/01.good.t
 t/perlcritic.t
 t/pod-coverage.t
 t/pod.t
+t/Sample-Good/Changes
+t/Sample-Good/lib/Sample/Good.pm
+t/Sample-Good/lib/Sample/StillGood.pm
+t/Sample-Good/MANIFEST
 t/version.t

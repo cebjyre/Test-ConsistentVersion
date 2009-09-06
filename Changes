@@ -1,5 +1,9 @@
 Revision history for Test-ConsistentVersion
 
+0.0.3  Sun Sep  6 2009
+       Updated MANIFEST to actually include the
+            test developed for 0.0.2
+
 0.0.2  Sun Sep  6 2009
        Added a test, repository and
             recommended modules metadata
