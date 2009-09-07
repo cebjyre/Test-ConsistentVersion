@@ -1,6 +1,6 @@
 ---
 name: Test-ConsistentVersion
-version: v0.0.3
+version: v0.0.4
 author:
   - 'Glenn Fowler <cebjyre@cpan.org>'
 abstract: Ensures a CPAN distribution has consistent versioning.
@@ -9,7 +9,7 @@ resources:
   license: http://dev.perl.org/licenses/
   repository: http://github.com/cebjyre/Test-ConsistentVersion/tree/master
 requires:
-  Test::Builder: 0
+  Test::Builder: 0.94
   autodie: 0
   version: 0
 recommends:
@@ -19,7 +19,7 @@ configure_requires:
 provides:
   Test::ConsistentVersion:
     file: lib/Test/ConsistentVersion.pm
-    version: v0.0.3
+    version: v0.0.4
 generated_by: Module::Build version 0.35
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
