@@ -5,7 +5,7 @@ use Test::More tests => 2;
 my $expected_tests = 2;     #number of modules to check
 $expected_tests *= 2 if eval {require Test::Pod::Content};
                             #double it if we are checking for pod versions
-$expected_tests++;          #plus one for the Changelog
+$expected_tests+=2;          #plus one for the Changelog
 
 my $test_count;
 use Test::ConsistentVersion;
