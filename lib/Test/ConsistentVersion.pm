@@ -101,8 +101,8 @@ sub _check_changelog {
         open(my $fh, '<', 'Changes');
         my $version_check = quotemeta($version);
         
-        my $changlog = join "\n", <$fh>;
-        $TEST->like($changlog, qr{\b$version_check\b}, 'Changelog includes reference to the distribution version: ' . $version);
+        my $changelog = join "\n", <$fh>;
+        $TEST->like($changelog, qr{\b$version_check\b}, 'Changelog includes reference to the distribution version: ' . $version);
         close $fh;
     }
     else {
