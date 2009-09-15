@@ -1,6 +1,6 @@
 ---
 name: Test-ConsistentVersion
-version: v0.0.4
+version: v0.1.0
 author:
   - 'Glenn Fowler <cebjyre@cpan.org>'
 abstract: Ensures a CPAN distribution has consistent versioning.
