@@ -13,4 +13,5 @@ t/Sample-Good/Changes
 t/Sample-Good/lib/Sample/Good.pm
 t/Sample-Good/lib/Sample/StillGood.pm
 t/Sample-Good/MANIFEST
+t/Sample-Good/README
 t/version.t

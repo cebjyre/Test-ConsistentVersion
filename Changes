@@ -1,5 +1,8 @@
 Revision history for Test-ConsistentVersion
 
+0.1.0  Tue Sep 15 2009
+       Now checking README for version consistency
+
 0.0.4  Mon Sep  7 2009
        Requiring minimum of 0.94 of Test-Simple
             for the subtest functionality

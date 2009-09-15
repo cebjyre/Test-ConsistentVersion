@@ -19,7 +19,7 @@ configure_requires:
 provides:
   Test::ConsistentVersion:
     file: lib/Test/ConsistentVersion.pm
-    version: v0.0.4
+    version: v0.1.0
 generated_by: Module::Build version 0.35
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
