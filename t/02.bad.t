@@ -31,10 +31,10 @@ test_err(q{#     expected: '1.2.31'});
 # Sample::Bad has different POD to the module version
 if($testing_pod)
 {
-	test_err(q{#   Failed test 'Sample::Bad POD version is the same as module version'});
-	test_err(q{#   at /Library/Perl/5.8.8/Test/Pod/Content.pm line 61.});
-	test_err(q{#                   '1.2.30'});
-	test_err(q{#     doesn't match '(?-xism:(^|\s)1\.2\.31(\s|$))'});
+    test_err(q{#   Failed test 'Sample::Bad POD version is the same as module version'});
+    test_err(q{#   at /Library/Perl/5.8.8/Test/Pod/Content.pm line 61.});
+    test_err(q{#                   '1.2.30'});
+    test_err(q{#     doesn't match '(?-xism:(^|\s)1\.2\.31(\s|$))'});
 }
 
 # Changelog doesn't have the current version
