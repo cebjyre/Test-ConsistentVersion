@@ -34,7 +34,7 @@ sub check_consistent_versions {
     }
     $test_count++ unless $ARGS{no_changelog};
     $test_count++ unless $ARGS{no_readme};
-    $TEST->plan(tests => $test_count);
+    $TEST->plan(tests => $test_count) unless $TEST->has_plan;
     
     ## no critic (eval)
     #Find the version number

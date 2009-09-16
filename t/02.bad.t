@@ -1,7 +1,9 @@
 chdir 't/Sample-Bad';
 use lib 'lib';
 
-use Test::Builder::Tester ;
+use Test::Builder::Tester tests => 2;
+use Test::More;
+
 my $expected_tests = 2;     #number of modules to check
 my $testing_pod = eval {require Test::Pod::Content};
 $expected_tests *= 2 if $testing_pod;
@@ -9,7 +11,6 @@ $expected_tests *= 2 if $testing_pod;
 $expected_tests += 2; #changelog and readme
 use Test::ConsistentVersion;
 
-test_out("1..$expected_tests");
 my $test_count = 1;
 test_out(sprintf 'ok %d - Sample::Bad is the same as the distribution version', $test_count++);
 test_out(sprintf 'not ok %d - Sample::StillBad is the same as the distribution version', $test_count++);
@@ -53,4 +54,8 @@ test_err(q{#     doesn't match '(?-xism:\b1\.2\.31\b)'});
 test_err(q{#   Failed test 'Unable to find README file'});
 test_err(q{#   at lib/Test/ConsistentVersion.pm line 48.});
 Test::ConsistentVersion::check_consistent_versions();
+my $T = Test::Builder->new;
+my $tests_run = $T->current_test;
 test_test('Failing version check');
+
+is($tests_run, $expected_tests, 'Expected number of tests were run')
