@@ -19,7 +19,6 @@ test_out(sprintf 'ok %d - Sample::StillBad POD version is the same as module ver
 test_out(sprintf 'not ok %d - Changelog includes reference to the distribution version: 1.2.31', $test_count++);
 test_out(sprintf 'not ok %d - Unable to find README file', $test_count++);
 
-
 test_diag(q{Distribution version: 1.2.31});
 
 # Sample::StillBad has a different version number
