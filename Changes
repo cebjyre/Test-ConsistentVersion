@@ -1,5 +1,9 @@
 Revision history for Test-ConsistentVersion
 
+0.2.1  Thu Sep 17 2009
+       Fixed tests when Test::Pod::Content is
+            not available
+
 0.2.0  Thu Sep 17 2009
        Improved tests
        No longer trying to plan tests if a plan has

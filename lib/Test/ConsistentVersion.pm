@@ -6,7 +6,7 @@ use strict;
 use Carp;
 use Test::Builder;
 
-use version; our $VERSION = qv('0.2.0');
+use version; our $VERSION = qv('0.2.1');
 
 my $TEST = Test::Builder->new;
 my %ARGS;
@@ -136,7 +136,7 @@ Test::ConsistentVersion - Ensures a CPAN distribution has consistent versioning.
 
 =head1 VERSION
 
-This document describes Test::ConsistentVersion version 0.2.0
+This document describes Test::ConsistentVersion version 0.2.1
 
 
 =head1 SYNOPSIS
