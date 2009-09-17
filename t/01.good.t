@@ -18,6 +18,7 @@ test_out(sprintf 'ok %d - Sample::StillGood POD version is the same as module ve
 test_out(sprintf 'ok %d - Changelog includes reference to the distribution version: 1.2.31', $test_count++);
 test_out(sprintf 'ok %d - README file includes reference to the distribution version: 1.2.31', $test_count++);
 
+test_diag('Test::Pod::Content required to test POD version consistency') unless $testing_pod;
 test_diag(q{Distribution version: 1.2.31});
 
 use Test::ConsistentVersion;
