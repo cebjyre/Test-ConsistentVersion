@@ -1,5 +1,10 @@
 Revision history for Test-ConsistentVersion
 
+0.2.0  Thu Sep 17 2009
+       Improved tests
+       No longer trying to plan tests if a plan has
+            already been made
+
 0.1.0  Tue Sep 15 2009
        Now checking README for version consistency
 
