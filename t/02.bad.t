@@ -32,7 +32,7 @@ test_err(q{#     expected: '1.2.31'});
 if($testing_pod)
 {
     test_err(q{#   Failed test 'Sample::Bad POD version is the same as module version'});
-    test_err(q{#   at /Library/Perl/5.8.8/Test/Pod/Content.pm line 61.});
+    test_err(sprintf '/#\s+ at .+%s .+/', quotemeta 'Test/Pod/Content.pm');
     test_err(q{#                   '1.2.30'});
     test_err(q{#     doesn't match '(?-xism:(^|\s)1\.2\.31(\s|$))'});
 }
