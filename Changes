@@ -1,5 +1,9 @@
 Revision history for Test-ConsistentVersion
 
+0.2.2  Fri Sep 18 2009
+       Fixed test that had a hardcoded assumption
+            of where Test::Pod::Content lives
+
 0.2.1  Thu Sep 17 2009
        Fixed tests when Test::Pod::Content is
             not available
