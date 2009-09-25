@@ -101,7 +101,10 @@ sub _check_changelog {
         open(my $fh, '<', 'Changes');
         my $version_check = quotemeta($version);
         
-        my $changelog = join "\n", <$fh>;
+        my @changelog_lines = <$fh>;
+        my $check_lines = 3;
+        $check_lines = @changelog_lines if @changelog_lines < $check_lines;
+        my $changelog = join "\n", @changelog_lines[0..$check_lines-1];
         $TEST->like($changelog, qr{\b$version_check\b}, 'Changelog includes reference to the distribution version: ' . $version);
         close $fh;
     }
@@ -116,7 +119,10 @@ sub _check_readme {
         open(my $fh, '<', 'README');
         my $version_check = quotemeta($version);
         
-        my $readme = join "\n", <$fh>;
+        my @readme_lines = <$fh>;
+        my $check_lines = 3;
+        $check_lines = @readme_lines if @readme_lines < $check_lines;
+        my $readme = join "\n", @readme_lines[0..$check_lines-1];
         $TEST->like($readme, qr{\b$version_check\b}, 'README file includes reference to the distribution version: ' . $version);
         close $fh;
     }

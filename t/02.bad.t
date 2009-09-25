@@ -45,8 +45,6 @@ test_err(q{# });
 test_err(q{# });
 test_err(q{# });
 test_err(q{# 1.2.30});
-test_err(q{# });
-test_err(q{#     First version.});
 test_err(q{# '});
 test_err(q{#     doesn't match '(?-xism:\b1\.2\.31\b)'});
 
