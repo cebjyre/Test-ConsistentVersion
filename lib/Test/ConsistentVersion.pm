@@ -51,10 +51,10 @@ sub check_consistent_versions {
 sub _find_modules {
     my @modules;
     
-    if($ARGS{files}) {
+    if($ARGS{modules}) {
         @modules = @{$ARGS{modules}};
     }
-    if(-e 'MANIFEST') {
+    elsif(-e 'MANIFEST') {
         open(my $fh, '<', 'MANIFEST');
         @modules = map {
             my $str = $_;
