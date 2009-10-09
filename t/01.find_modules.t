@@ -1,12 +1,12 @@
 use Test::More tests => 3;
 
 my $good_dist_modules = [
-	'Sample::Good',
-	'Sample::StillGood',
+    'Sample::Good',
+    'Sample::StillGood',
 ];
 
 my $one_bad_dist_module = [
-	'Sample::StillBad',
+    'Sample::StillBad',
 ];
 
 use Test::ConsistentVersion;
