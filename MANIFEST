@@ -7,6 +7,9 @@ README
 t/00.load.t
 t/01.find_modules.t
 t/02.check_module_versions.t
+t/03.check_pod_versions.t
+t/04.check_changelog.t
+t/05.check_readme.t
 t/20.good_dist.t
 t/21.bad_dist.t
 t/perlcritic.t
