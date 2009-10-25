@@ -6,7 +6,6 @@ my $bad_version = '1.2.32';
 use Test::ConsistentVersion;
 
 chdir 't/Sample-Good';
-Test::Builder::Tester::color(1);
 
 test_out('ok 1 - Changelog includes reference to the distribution version: ' . $good_version);
 Test::ConsistentVersion::_check_changelog($good_version);
