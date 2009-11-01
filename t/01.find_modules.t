@@ -27,7 +27,7 @@ is_deeply(\@modules, $one_bad_dist_module, 'Correctly using modules provided in 
 
 chdir '..';
 eval {
-    Test::ConsistentVersion::check_consistent_versions(no_readme => 1, no_pod => 1, no_changelog => 1);
+    Test::ConsistentVersion::check_consistent_versions(version => 'not used', no_readme => 1, no_pod => 1, no_changelog => 1);
 };
 @modules = Test::ConsistentVersion::_find_modules();
 
