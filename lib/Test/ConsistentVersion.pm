@@ -38,7 +38,7 @@ sub check_consistent_versions {
     
     ## no critic (eval)
     #Find the version number
-    my $distro_version = $ARGS{Version};
+    my $distro_version = $ARGS{version};
     unless($distro_version) {
         eval "require $modules[0]";
         $distro_version = $modules[0]->VERSION;
