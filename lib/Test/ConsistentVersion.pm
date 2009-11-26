@@ -100,8 +100,12 @@ sub _check_module_versions {
 
 sub _check_changelog {
     my $version = shift;
-    if(-e 'Changes') {
-        open(my $fh, '<', 'Changes');
+    my $change_file = 'Changes';
+    if($ARGS{changelog}{filename}) {
+        $change_file = $ARGS{changelog}{filename};
+    }
+    if(-e $change_file) {
+        open(my $fh, '<', $change_file);
         my $version_check = quotemeta($version);
         
         my @changelog_lines = <$fh>;
