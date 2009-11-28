@@ -24,7 +24,7 @@ test_diag(q{Distribution version: 1.2.31});
 
 # Sample::StillBad has a different version number
 test_err(q{#   Failed test 'Sample::StillBad is the same as the distribution version'});
-test_err(q{#   at lib/Test/ConsistentVersion.pm line 48.});
+test_err(q{#   at lib/Test/ConsistentVersion.pm line 49.});
 test_err(q{#          got: '1.2.30'});
 test_err(q{#     expected: '1.2.31'});
 
@@ -39,7 +39,7 @@ if($testing_pod)
 
 # Changelog doesn't have the current version
 test_err(q{#   Failed test 'Changelog includes reference to the distribution version: 1.2.31'});
-test_err(q{#   at lib/Test/ConsistentVersion.pm line 50.});
+test_err(q{#   at lib/Test/ConsistentVersion.pm line 51.});
 test_err(q{#                   'Changelog});
 test_err(q{# });
 test_err(q{# });
@@ -50,8 +50,8 @@ test_err(q{#     doesn't match '(?-xism:\b1\.2\.31\b)'});
 
 # No readme file:
 test_err(q{#   Failed test 'Unable to find README file'});
-test_err(q{#   at lib/Test/ConsistentVersion.pm line 51.});
-Test::ConsistentVersion::check_consistent_versions();
+test_err(q{#   at lib/Test/ConsistentVersion.pm line 52.});
+Test::ConsistentVersion::all_consistent_versions_ok();
 my $T = Test::Builder->new;
 my $tests_run = $T->current_test;
 test_test('Failing version check');

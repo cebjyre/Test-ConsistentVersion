@@ -1,4 +1,4 @@
-use Test::More tests => 4;
+use Test::More tests => 3;
 
 my $good_dist_modules = [
     'Sample::Good',
@@ -14,21 +14,17 @@ my $no_modules = [];
 use Test::ConsistentVersion;
 
 chdir 't/Sample-Good';
-my @modules = Test::ConsistentVersion::_find_modules();
+my @modules = Test::ConsistentVersion::_find_modules({});
 
 is_deeply(\@modules, $good_dist_modules, 'Finding modules based on MANIFEST');
 
 chdir '../Sample-Bad';
 use lib 'lib';
-Test::ConsistentVersion::check_consistent_versions(modules => $one_bad_dist_module, no_readme => 1, no_pod => 1, no_changelog => 1);
-@modules = Test::ConsistentVersion::_find_modules();
+@modules = Test::ConsistentVersion::_find_modules({modules => $one_bad_dist_module});
 
 is_deeply(\@modules, $one_bad_dist_module, 'Correctly using modules provided in args');
 
 chdir '..';
-eval {
-    Test::ConsistentVersion::check_consistent_versions(version => 'not used', no_readme => 1, no_pod => 1, no_changelog => 1);
-};
-@modules = Test::ConsistentVersion::_find_modules();
+@modules = Test::ConsistentVersion::_find_modules({});
 
 is_deeply(\@modules, $no_modules, 'Fallback to empty list if nothing better is available');

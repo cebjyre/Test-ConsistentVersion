@@ -24,7 +24,7 @@ test_diag(q{Distribution version: 1.2.31});
 use Test::ConsistentVersion;
 my $T = Test::Builder->new;
 
-Test::ConsistentVersion::check_consistent_versions();
+Test::ConsistentVersion::all_consistent_versions_ok();
 my $tests_run = $T->current_test;
 test_test('Failing version check');
 

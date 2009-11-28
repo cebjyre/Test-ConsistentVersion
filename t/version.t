@@ -7,4 +7,4 @@ if ( not $ENV{TEST_AUTHOR} ) {
 
 eval "use Test::ConsistentVersion";
 plan skip_all => "Test::ConsistentVersion required for checking versions" if $@;
-Test::ConsistentVersion::check_consistent_versions();
+Test::ConsistentVersion::all_consistent_versions_ok();

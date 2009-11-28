@@ -11,52 +11,60 @@ use version; our $VERSION = qv('0.2.2');
 my $TEST = Test::Builder->new;
 my %ARGS;
 
-sub check_consistent_versions {
-    %ARGS = @_;
+sub all_consistent_versions_ok {
+    my @params = @_;
+    my $args = ((@params and ref $params[0] eq 'HASH') ? shift @params : {});
+    my $msg = shift;
     
-    my @modules = _find_modules();
+    my @modules = _find_modules($args);
     
     my $file_count = @modules;
-    unless(@modules) {
-        $TEST->diag('No files to get version from.');
+    unless($file_count or $args->{version}) {
+        $TEST->diag('No files to get version from and distribution version not supplied.');
     }
     my $test_count = $file_count;
-    unless($ARGS{no_pod}) {
+    unless($args->{no_pod}) {
         eval { require Test::Pod::Content; };
         
         if ($@) {
             $TEST->diag('Test::Pod::Content required to test POD version consistency');
-            $ARGS{no_pod} = 1;
+            $args->{no_pod} = 1;
         }
         else {
             $test_count+=$file_count
         }
     }
-    $test_count++ unless $ARGS{no_changelog};
-    $test_count++ unless $ARGS{no_readme};
+    $test_count++ unless $args->{no_changelog};
+    $test_count++ unless $args->{no_readme};
     $TEST->plan(tests => $test_count) unless $TEST->has_plan;
     
     ## no critic (eval)
     #Find the version number
-    my $distro_version = $ARGS{version};
-    unless($distro_version) {
+    unless(defined $args->{version}) {
         eval "require $modules[0]";
-        $distro_version = $modules[0]->VERSION;
+        $args->{version} = $modules[0]->VERSION;
     }
-    $TEST->diag("Distribution version: $distro_version");
+    $TEST->diag("Distribution version: $args->{version}");
     
-    _check_module_versions($distro_version, @modules);
-    _check_pod_versions(@modules) unless $ARGS{no_pod};
-    _check_changelog($distro_version) unless $ARGS{no_changelog};
-    _check_readme($distro_version) unless $ARGS{no_readme};
+    _check_module_versions($args->{version}, @modules);
+    _check_pod_versions(@modules) unless $args->{no_pod};
+    _check_changelog($args) unless $args->{no_changelog};
+    _check_readme($args->{version}) unless $args->{no_readme};
     return;
 }
 
+sub check_consistent_versions {
+    my %args = @_;
+    
+    return all_consistent_versions_ok(\%args);
+}
+
 sub _find_modules {
+    my $args=shift;
     my @modules;
     
-    if($ARGS{modules}) {
-        @modules = @{$ARGS{modules}};
+    if($args->{modules}) {
+        @modules = @{$args->{modules}};
     }
     elsif(-e 'MANIFEST') {
         open(my $fh, '<', 'MANIFEST');
@@ -107,10 +115,11 @@ sub _check_module_versions {
 }
 
 sub _check_changelog {
-    my $version = shift;
+    my $args = shift;
+    my $version = $args->{version};
     my $change_file = 'Changes';
-    if($ARGS{changelog}{filename}) {
-        $change_file = $ARGS{changelog}{filename};
+    if($args->{changelog}{filename}) {
+        $change_file = $args->{changelog}{filename};
     }
     if(-e $change_file) {
         open(my $fh, '<', $change_file);
@@ -175,7 +184,7 @@ This document describes Test::ConsistentVersion version 0.2.2
     
     eval "use Test::ConsistentVersion";
     plan skip_all => "Test::ConsistentVersion required for checking versions" if $@;
-    Test::ConsistentVersion::check_consistent_versions();
+    Test::ConsistentVersion::all_consistent_versions_ok();
 
 
 =head1 DESCRIPTION
@@ -189,12 +198,18 @@ as readme file and changelog) of the distribution.
 
 =over
 
+=item all_consistent_versions_ok
+
+    all_consistent_versions_ok()
+
+Checks the various versions throughout the distribution to ensure they
+are all consistent.
+
 =item check_consistent_versions
 
     check_consistent_versions()
 
-Checks the various versions throughout the distribution to ensure they
-are all consistent.
+B<DEPRECATED> - Use L<all_consistent_versions_ok> instead.
 
 =back
 
