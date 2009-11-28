@@ -49,27 +49,34 @@ sub check_consistent_versions {
     _check_pod_versions(@modules) unless $ARGS{no_pod};
     _check_changelog($distro_version) unless $ARGS{no_changelog};
     _check_readme($distro_version) unless $ARGS{no_readme};
+    return;
 }
 
 sub _find_modules {
     my @modules;
     
-    if($ARGS{files}) {
+    if($ARGS{modules}) {
         @modules = @{$ARGS{modules}};
     }
-    if(-e 'MANIFEST') {
+    elsif(-e 'MANIFEST') {
         open(my $fh, '<', 'MANIFEST');
-        @modules = map {
-            my $str = $_;
-            $str =~ s{^lib/(.*)\.pm}{$1};
-            $str =~ s(/)(::)g;
-            chomp $str;
-            $str;
-        } grep {
-            /^lib.*\.pm$/
-        } <$fh>;
+        @modules = _get_modules_from_manifest ($fh);
         close $fh;
     }
+    return @modules;
+}
+
+sub _get_modules_from_manifest {
+    my $manifest_fh      = shift;
+    
+    my @modules = map {
+        my $str = $_;
+        $str =~ s{^lib/(.*)\.pm}{$1};
+        $str =~ s(/)(::)g;
+        chomp $str;
+        $str;
+    } grep { /^lib.*\.pm$/ } <$manifest_fh>;
+    
     return @modules;
 }
 
@@ -85,17 +92,18 @@ sub _check_pod_versions {
         my $module_version = $module->VERSION;
         Test::Pod::Content::pod_section_like( $module, 'VERSION', qr{(^|\s)\Q$module_version\E(\s|$)}, "$module POD version is the same as module version")
     }
+    return;
 }
 
 sub _check_module_versions {
-    my $version = shift;
-    my @modules = @_;
+    my ($version, @modules) = @_;
     
     ## no critic (eval)
     foreach my $module (@modules) {
         eval "require $module" or $TEST->diag($@);
         $TEST->is_eq($module->VERSION, $version, "$module is the same as the distribution version");
     }
+    return;
 }
 
 sub _check_changelog {
@@ -118,6 +126,7 @@ sub _check_changelog {
     else {
         $TEST->ok(0, 'Unable to find Changes file');
     }
+    return;
 }
 
 sub _check_readme {
@@ -136,6 +145,7 @@ sub _check_readme {
     else {
         $TEST->ok(0, 'Unable to find README file');
     }
+    return;
 }
 
 1; # Magic true value required at end of module
