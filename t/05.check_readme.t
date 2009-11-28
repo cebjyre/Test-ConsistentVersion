@@ -1,4 +1,4 @@
-use Test::Builder::Tester tests => 2;
+use Test::Builder::Tester tests => 3;
 use Test::More;
 
 my $good_version = '1.2.31';
@@ -16,3 +16,11 @@ test_fail(1);
 Test::ConsistentVersion::_check_readme($bad_version);
 test_err(sprintf q{/#\s+'%s version (.*\n.*)*doesn't match.*/}, 'Sample-Good');
 test_test();
+
+chdir '..';
+
+test_out('not ok 1 - Unable to find README file');
+test_fail(1);
+Test::ConsistentVersion::_check_readme($good_version);
+test_test();
+

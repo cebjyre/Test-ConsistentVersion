@@ -38,8 +38,11 @@ sub check_consistent_versions {
     
     ## no critic (eval)
     #Find the version number
-    eval "require $modules[0]";
-    my $distro_version = $modules[0]->VERSION;
+    my $distro_version = $ARGS{version};
+    unless($distro_version) {
+        eval "require $modules[0]";
+        $distro_version = $modules[0]->VERSION;
+    }
     $TEST->diag("Distribution version: $distro_version");
     
     _check_module_versions($distro_version, @modules);

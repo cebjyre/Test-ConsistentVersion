@@ -1,4 +1,4 @@
-use Test::More tests => 3;
+use Test::More tests => 4;
 
 my $good_dist_modules = [
     'Sample::Good',
@@ -8,6 +8,8 @@ my $good_dist_modules = [
 my $one_bad_dist_module = [
     'Sample::StillBad',
 ];
+
+my $no_modules = [];
 
 use Test::ConsistentVersion;
 
@@ -22,3 +24,11 @@ Test::ConsistentVersion::check_consistent_versions(modules => $one_bad_dist_modu
 @modules = Test::ConsistentVersion::_find_modules();
 
 is_deeply(\@modules, $one_bad_dist_module, 'Correctly using modules provided in args');
+
+chdir '..';
+eval {
+    Test::ConsistentVersion::check_consistent_versions(version => 'not used', no_readme => 1, no_pod => 1, no_changelog => 1);
+};
+@modules = Test::ConsistentVersion::_find_modules();
+
+is_deeply(\@modules, $no_modules, 'Fallback to empty list if nothing better is available');
