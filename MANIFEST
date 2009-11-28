@@ -1,3 +1,4 @@
+.perlcriticrc
 Build.PL
 Changes
 lib/Test/ConsistentVersion.pm
