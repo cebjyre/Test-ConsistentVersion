@@ -11,6 +11,8 @@ $expected_tests *= 2 if $testing_pod;
 $expected_tests += 2; #changelog and readme
 use Test::ConsistentVersion;
 
+my $RE_DEFAULT_FLAGS = qr// eq '(?-xism:)' ? '-xism' : '^';
+
 my $test_count = 1;
 test_out(sprintf 'ok %d - Sample::Bad is the same as the distribution version', $test_count++);
 test_out(sprintf 'not ok %d - Sample::StillBad is the same as the distribution version', $test_count++);
@@ -34,7 +36,7 @@ if($testing_pod)
     test_err(q{#   Failed test 'Sample::Bad POD version is the same as module version'});
     test_err(sprintf '/#\s+ at .+%s .+/', quotemeta 'Test/Pod/Content.pm');
     test_err(q{#                   '1.2.30'});
-    test_err(q{#     doesn't match '(?-xism:(^|\s)1\.2\.31(\s|$))'});
+    test_err(sprintf q{#     doesn't match '(?%s:(^|\s)1\.2\.31(\s|$))'}, $RE_DEFAULT_FLAGS);
 }
 
 # Changelog doesn't have the current version
@@ -48,7 +50,7 @@ test_err(q{# 1.2.30});
 test_err(q{# });
 test_err(q{#     First version.});
 test_err(q{# '});
-test_err(q{#     doesn't match '(?-xism:\b1\.2\.31\b)'});
+test_err(sprintf q{#     doesn't match '(?%s:\b1\.2\.31\b)'}, $RE_DEFAULT_FLAGS);
 
 # No readme file:
 test_err(q{#   Failed test 'Unable to find README file'});
