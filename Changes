@@ -1,5 +1,10 @@
 Revision history for Test-ConsistentVersion
 
+0.3.0  Wed Nov 12 2014
+       Don't fail on version numbers that have 'v'
+            prepended (eg this changelog entry could
+            be 'v0.3.0')
+
 0.2.3  Tue Oct 19 2010
        Fixed test that was broken by change to regex
             in Perl v5.13.5

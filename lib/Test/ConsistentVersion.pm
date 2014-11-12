@@ -6,7 +6,7 @@ use strict;
 use Carp;
 use Test::Builder;
 
-use version; our $VERSION = qv('0.2.3');
+use version; our $VERSION = qv('0.3.0');
 
 my $TEST = Test::Builder->new;
 my %ARGS;
@@ -136,7 +136,7 @@ Test::ConsistentVersion - Ensures a CPAN distribution has consistent versioning.
 
 =head1 VERSION
 
-This document describes Test::ConsistentVersion version 0.2.3
+This document describes Test::ConsistentVersion version 0.3.0
 
 
 =head1 SYNOPSIS
@@ -224,12 +224,12 @@ L<http://rt.cpan.org>.
 
 Glenn Fowler  C<< <cebjyre@cpan.org> >>
 
-Thanks to L<http://www.hiivesystems.com>.
+Thanks to L<http://www.affinitylive.com>.
 
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2009, Glenn Fowler C<< <cebjyre@cpan.org> >>. All rights reserved.
+Copyright (c) 2014, Glenn Fowler C<< <cebjyre@cpan.org> >>. All rights reserved.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
