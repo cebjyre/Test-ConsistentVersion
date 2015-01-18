@@ -133,11 +133,9 @@ __END__
 
 Test::ConsistentVersion - Ensures a CPAN distribution has consistent versioning.
 
-
 =head1 VERSION
 
 This document describes Test::ConsistentVersion version 0.3.0
-
 
 =head1 SYNOPSIS
 
@@ -161,7 +159,6 @@ The purpose of this module is to make it easy for other distribution
 authors to have consistent version numbers within the modules (as well
 as readme file and changelog) of the distribution.
 
-
 =head1 INTERFACE
 
 =over
@@ -184,7 +181,6 @@ Nothing so far.
 
 Test::ConsistentVersion requires no configuration files or environment variables.
 
-
 =head1 DEPENDENCIES
 
 =over
@@ -194,7 +190,6 @@ Test::ConsistentVersion requires no configuration files or environment variables
 =item L<autodie>
 
 =back
-
 
 B<Optional>
 
@@ -210,7 +205,6 @@ For ensuring the module version matches that referenced in the POD.
 
 None reported.
 
-
 =head1 BUGS AND LIMITATIONS
 
 No bugs have been reported.
@@ -219,13 +213,11 @@ Please report any bugs or feature requests to
 C<bug-test-consistentversion@rt.cpan.org>, or through the web interface at
 L<http://rt.cpan.org>.
 
-
 =head1 AUTHOR
 
 Glenn Fowler  C<< <cebjyre@cpan.org> >>
 
 Thanks to L<http://www.affinitylive.com>.
-
 
 =head1 LICENCE AND COPYRIGHT
 
@@ -233,7 +225,6 @@ Copyright (c) 2014, Glenn Fowler C<< <cebjyre@cpan.org> >>. All rights reserved.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
-
 
 =head1 DISCLAIMER OF WARRANTY
 
