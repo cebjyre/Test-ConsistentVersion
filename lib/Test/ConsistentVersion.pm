@@ -165,13 +165,28 @@ as readme file and changelog) of the distribution.
 
 =item check_consistent_versions
 
-    check_consistent_versions()
+    check_consistent_versions(%ARGS)
 
 Checks the various versions throughout the distribution to ensure they
 are all consistent.
 
+The C<%ARGS> is an optional args hash wich may contain the following
+flags in keys:
+
+=over
+
+=item no_pod
+
+=item no_changelog
+
+=item no_readme
+
 =back
 
+Each flag will make the version check be skipped at the related place if
+set to true.
+
+=back
 
 =head1 DIAGNOSTICS
 
