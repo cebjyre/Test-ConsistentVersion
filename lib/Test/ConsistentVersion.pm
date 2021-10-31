@@ -191,6 +191,8 @@ Test::ConsistentVersion requires no configuration files or environment variables
 
 =over
 
+=item perl 5.6 or greater
+
 =item L<Test::Builder>
 
 =item L<autodie>
@@ -210,7 +212,7 @@ For ensuring the module version matches that referenced in the POD.
 
 =head1 INCOMPATIBILITIES
 
-None reported.
+Perl 5.6 or greater is required.
 
 
 =head1 BUGS AND LIMITATIONS
