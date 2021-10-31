@@ -8,6 +8,7 @@ my $builder = Module::Build->new(
     dist_author         => 'Glenn Fowler <cebjyre@cpan.org>',
     dist_version_from   => 'lib/Test/ConsistentVersion.pm',
     requires => {
+        'perl'          => 5.006,
         'Test::Builder' => 0.94,
         'version'       => 0,
         'autodie'       => 0,
