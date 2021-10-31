@@ -8,7 +8,7 @@ use strict;
 use Carp;
 use Test::Builder;
 
-use version; our $VERSION = qv('0.3.0');
+use version; our $VERSION = qv('0.3.1');
 
 my $TEST = Test::Builder->new;
 my %ARGS;
