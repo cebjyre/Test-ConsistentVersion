@@ -138,7 +138,7 @@ Test::ConsistentVersion - Ensures a CPAN distribution has consistent versioning.
 
 =head1 VERSION
 
-This document describes Test::ConsistentVersion version 0.3.0
+This document describes Test::ConsistentVersion version 0.3.1
 
 
 =head1 SYNOPSIS
