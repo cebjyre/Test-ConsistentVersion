@@ -1,5 +1,7 @@
 package Test::ConsistentVersion;
 
+use 5.006;
+
 use warnings;
 use autodie;
 use strict;
