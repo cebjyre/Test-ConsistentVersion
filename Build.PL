@@ -18,7 +18,7 @@ my $builder = Module::Build->new(
     },
     meta_merge => {
         resources => {
-            repository  => 'http://github.com/cebjyre/Test-ConsistentVersion',
+            repository  => 'https://github.com/cebjyre/Test-ConsistentVersion',
         },
     },
     add_to_cleanup      => [ 'Test-ConsistentVersion-*' ],

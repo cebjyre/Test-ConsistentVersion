@@ -220,20 +220,19 @@ Perl 5.6 or greater is required.
 No bugs have been reported.
 
 Please report any bugs or feature requests to
-C<bug-test-consistentversion@rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org>.
+L<https://github.com/cebjyre/Test-ConsistentVersion/issues>.
 
 
 =head1 AUTHOR
 
 Glenn Fowler  C<< <cebjyre@cpan.org> >>
 
-Thanks to L<http://www.affinitylive.com>.
+Thanks to L<http://www.accelo.com>.
 
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2014, Glenn Fowler C<< <cebjyre@cpan.org> >>. All rights reserved.
+Copyright (c) 2021, Glenn Fowler C<< <cebjyre@cpan.org> >>. All rights reserved.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
